@@ -17,10 +17,16 @@ __max_stack_size = 0x400;
 /* Defining output sections */
 
 SECTIONS {
+    .isr_vector_tbl :
+    {
+        . = ALIGN(4);
+        KEEP(*(.isr_vector_tbl))
+        KEEP(*(.isr_vector_tbl.*))
+    } > FLASH
+
     .text :
     {
         . = ALIGN(4);
-        *(.isr_vector_tbl)
         *(.text)
         *(.rodata)
         . = ALIGN(4);
